@@ -29,8 +29,20 @@ import {
 
   }
 
+const RenderField = ({field, props }: { field: any; props: CustomProps}) => {
+    switch (props.fieldType) {
+        case FormFieldType.INPUT:
 
-const CustomFormField = ({ control, fieldType, name, label }: CustomProps) => {
+        break
+
+        default: 
+        break;
+    }
+}
+
+
+const CustomFormField = (props: CustomProps) => {
+    const { control, fieldType, name, label } = props
   return (
     <FormField
         control={control}
@@ -40,6 +52,9 @@ const CustomFormField = ({ control, fieldType, name, label }: CustomProps) => {
             {fieldType !== FormFieldType.CHECKBOX && label && (
                 <FormLabel>{label}</FormLabel>
             )}
+          <RenderField field={field} props={props}/>
+
+          <FormMessage className="shad-error"/>
           </FormItem>
         )}
       />
