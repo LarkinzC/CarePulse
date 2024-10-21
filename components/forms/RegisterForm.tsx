@@ -47,11 +47,17 @@ const RegisterForm = ({user}: { user: User}) => {
   }
   return (
     <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12 flex-1">
       <section className="mb-12 space-y-4">
-        <h1 className="header">Hi there 👋</h1>
-        <p className="text-dark-700">Schedule your first appointment</p>
+        <h1 className="header">Welcome 👋</h1>
+        <p className="text-dark-700">Let us know more about yourself.</p>
       </section>
+      <section className="mb-12 space-y-6">
+        <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Personal information</h2>
+        </div>
+      </section>
+
       <CustomFormField 
       fieldType={FormFieldType.INPUT}
       control={form.control}
