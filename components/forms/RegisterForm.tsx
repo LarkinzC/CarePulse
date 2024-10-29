@@ -68,6 +68,29 @@ const RegisterForm = ({user}: { user: User}) => {
       iconAlt='user'
       />
 
+      <div className="flex flex-col gap-6 xl:flex-row">
+        
+      <CustomFormField 
+      fieldType={FormFieldType.INPUT}
+      control={form.control}
+      name='email'
+      label='Email'
+      placeholder= 'Johndoe@gmail.com'
+      iconSrc='/assets/icons/email.svg'
+      iconAlt='email'
+      />
+
+<CustomFormField 
+      fieldType={FormFieldType.PHONE_INPUT}
+      control={form.control}
+      name='phone'
+      label='Phone Number'
+      placeholder= '(999) 123-4567'
+      iconSrc='/assets/icons/email.svg'
+      iconAlt='email'
+      />
+      </div>
+
       <SubmitButton isLoading={isLoading}>
         Get Started
       </SubmitButton>
