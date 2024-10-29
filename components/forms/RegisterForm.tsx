@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
-import {Form} from "@/components/ui/form"
+import {Form, FormControl} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
@@ -13,6 +13,7 @@ import { userFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
+import { RadioGroup  } from "@radix-ui/react-radio-group"
 
  
 const RegisterForm = ({user}: { user: User}) => {
@@ -69,7 +70,7 @@ const RegisterForm = ({user}: { user: User}) => {
       />
 
       <div className="flex flex-col gap-6 xl:flex-row">
-        
+
       <CustomFormField 
       fieldType={FormFieldType.INPUT}
       control={form.control}
@@ -80,7 +81,7 @@ const RegisterForm = ({user}: { user: User}) => {
       iconAlt='email'
       />
 
-<CustomFormField 
+      <CustomFormField 
       fieldType={FormFieldType.PHONE_INPUT}
       control={form.control}
       name='phone'
@@ -89,6 +90,40 @@ const RegisterForm = ({user}: { user: User}) => {
       iconSrc='/assets/icons/email.svg'
       iconAlt='email'
       />
+      </div>
+      <div className="flex flex-col gap-6 xl:flex-row">
+      <CustomFormField 
+      fieldType={FormFieldType.DATE_PICKER}
+      control={form.control}
+      name='birthDate'
+      label='Date of Birth'
+      />
+
+      <CustomFormField 
+      fieldType={FormFieldType.SKELETON}
+      control={form.control}
+      name='Gender'
+      label='Gender'
+      renderSkeleton={(field) => (
+        <FormControl>
+          <RadioGroup>
+
+          </RadioGroup>
+        </FormControl>
+      )}
+      />
+      </div>
+      <div className="flex flex-col gap-6 xl:flex-row">
+          
+      </div>
+      <div className="flex flex-col gap-6 xl:flex-row">
+          
+      </div>
+      <div className="flex flex-col gap-6 xl:flex-row">
+          
+      </div>
+      <div className="flex flex-col gap-6 xl:flex-row">
+          
       </div>
 
       <SubmitButton isLoading={isLoading}>
