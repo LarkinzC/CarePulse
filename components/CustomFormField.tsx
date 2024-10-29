@@ -14,6 +14,9 @@ import {
   import Image from "next/image"
   import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 
   interface CustomProps {
@@ -33,7 +36,7 @@ import PhoneInput from 'react-phone-number-input'
   }
 
 const RenderField = ({field, props }: { field: any; props: CustomProps}) => {
-    const { fieldType,iconSrc,iconAlt, placeholder, } = props
+    const { fieldType,iconSrc,iconAlt, placeholder, showTimeSelect,dateFormat } = props
 
     switch (fieldType) {
         case FormFieldType.INPUT:
@@ -83,7 +86,19 @@ const RenderField = ({field, props }: { field: any; props: CustomProps}) => {
                     className="ml-2"
                     />
                     <FormControl>
-                        
+                    <DatePicker 
+                    selected={field.value} 
+                    onChange={(date) => field.onChange(date)}
+                    dateFormat={dateFormat ?? 
+                        'MM/DD/YYYY'
+                    }
+                    showTimeSelect={showTimeSelect ??
+                        false
+                    } 
+                    timeInputLabel="Time:"
+                    wrapperClassName="date-picker"
+                    className="pt-3"
+                    />
                     </FormControl>
                 </div>
             )
