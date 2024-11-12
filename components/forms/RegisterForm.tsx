@@ -204,7 +204,20 @@ const RegisterForm = ({user}: { user: User}) => {
       />
       </div>
       <div className="flex flex-col gap-6 xl:flex-row">
-          
+      <CustomFormField 
+      fieldType={FormFieldType.TEXTAREA}
+      control={form.control}
+      name='allergies'
+      label='Allergies (if any)'
+      placeholder= 'Peanuts, Penicillin, Pollen'
+      />
+      <CustomFormField 
+      fieldType={FormFieldType.TEXTAREA}
+      control={form.control}
+      name='currentMedication'
+      label='Current Medication (if any)'
+      placeholder= 'Ibuprofen (600mg), Paracetemol (500mg)'
+      />
       </div>
 
       <SubmitButton isLoading={isLoading}>
