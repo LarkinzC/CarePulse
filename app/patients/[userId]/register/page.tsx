@@ -23,7 +23,7 @@ const Register = async ({ params: { userId }}: SearchParamProps) => {
 
         <RegisterForm user={user}/>
 
-        <p className="justify-items-end text-dark-600 xl:text-left">© 2024 CarePulse</p>
+        <p className="copyright py-12">© 2024 CarePulse</p>
       </div>
     </section>
     <Image src='/assets/images/register-img.png'
