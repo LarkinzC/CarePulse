@@ -50,12 +50,18 @@ const RegisterForm = ({user}: { user: User}) => {
       formData.append('blobFile', blobFile)
       formData.append('fileName', values.identificationDocument[0].name)
     }
-    
-    try {
-      
 
-      if(user) 
-        router.push(`/patients/${user.$id}/register`)
+    try {
+      const patientData = {
+        ...values,
+        userId: user.$id,
+        birthDate: new Date(values.birthDate),
+        identificationDocument: formData
+      }
+
+      const patient = await registerPatient(patientData)
+      if(patient)router.push(`/patients/${user.$id}/new-appointment`)
+
     } catch(error) {
       console.log(error)
     }
