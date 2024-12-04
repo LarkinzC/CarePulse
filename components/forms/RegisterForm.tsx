@@ -11,7 +11,7 @@ import SubmitButton from "../SubmitButton"
 import { useState } from "react"
 import { PatientFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
-import { createUser } from "@/lib/actions/patient.actions"
+import { createUser, registerPatient, patientData } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants"
@@ -58,7 +58,7 @@ const RegisterForm = ({user}: { user: User}) => {
         birthDate: new Date(values.birthDate),
         identificationDocument: formData
       }
-
+  //  @ts-ignore
       const patient = await registerPatient(patientData)
       if(patient)router.push(`/patients/${user.$id}/new-appointment`)
 
