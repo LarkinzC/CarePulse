@@ -69,8 +69,8 @@ type: 'create' | 'cancel'}
       fieldType={FormFieldType.SELECT}
       control={form.control}
       name='primaryPhysician'
-      label='Primary Physician'
-      placeholder= 'Select a physician'
+      label='Doctor'
+      placeholder= 'Select a Doctor'
       >
         {Doctors.map((doctor) => (
           <SelectItem key={doctor.name} value={doctor.name}>
@@ -85,6 +85,14 @@ type: 'create' | 'cancel'}
           </SelectItem>
         ))}
       </CustomFormField>
+
+      <CustomFormField 
+      fieldType={FormFieldType.DATE_PICKER}
+      control={form.control}
+      name="schedule"
+      label="Expected appointment date"
+      showTimeSelect
+      dateFormat="MM/DD/YYYY - h:mm aa"/>
       </>
     )}
 
