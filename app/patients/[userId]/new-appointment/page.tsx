@@ -3,6 +3,7 @@ import Image from 'next/image'
 import PatientForm from "@/components/forms/PatientForm";
 import Link from 'next/link'
 import AppointmentForm from '@/components/forms/AppointmentForm';
+import { getPatient } from '@/lib/actions/patient.actions';
 
 export default async function NewAppointment({ params: { userId }}: SearchParamProps) {
   const patient = await getPatient(userId)
@@ -22,6 +23,7 @@ export default async function NewAppointment({ params: { userId }}: SearchParamP
           <AppointmentForm 
           type='create'
           userId={userId}
+          patient={patient.$id}
           />
 
           
