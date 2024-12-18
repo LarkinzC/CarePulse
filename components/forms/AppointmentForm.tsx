@@ -13,6 +13,9 @@ import { UserFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
+import { Doctors } from "@/constants"
+import { SelectItem } from "../ui/select"
+import Image from "next/image"
 
  
 const AppointmentForm =({
@@ -59,35 +62,32 @@ type: 'create' | 'cancel'}
         <h1 className="header">New Appointment</h1>
         <p className="text-dark-700">Request a new appointment in 10 seconds</p>
       </section>
-      <CustomFormField 
-      fieldType={FormFieldType.INPUT}
-      control={form.control}
-      name='name'
-      label='Full name'
-      placeholder= 'John Doe'
-      iconSrc='/assets/icons/user.svg'
-      iconAlt='user'
-      />
 
+    {type !== 'cancel' && (
+      <>
        <CustomFormField 
-      fieldType={FormFieldType.INPUT}
+      fieldType={FormFieldType.SELECT}
       control={form.control}
-      name='email'
-      label='Email'
-      placeholder= 'Johndoe@gmail.com'
-      iconSrc='/assets/icons/email.svg'
-      iconAlt='email'
-      />
+      name='primaryPhysician'
+      label='Primary Physician'
+      placeholder= 'Select a physician'
+      >
+        {Doctors.map((doctor) => (
+          <SelectItem key={doctor.name} value={doctor.name}>
+            <div className="flex cursor-pointer items-center gap-2">
+              <Image src={doctor.image}
+              width={32}
+              height={32}
+              alt={doctor.name}
+              className="rounded-full border border-x-dark-500"/>
+              <p>{doctor.name}</p>
+            </div>
+          </SelectItem>
+        ))}
+      </CustomFormField>
+      </>
+    )}
 
-<CustomFormField 
-      fieldType={FormFieldType.PHONE_INPUT}
-      control={form.control}
-      name='phone'
-      label='Phone Number'
-      placeholder= '(999) 123-4567'
-      iconSrc='/assets/icons/email.svg'
-      iconAlt='email'
-      />
       <SubmitButton isLoading={isLoading}>
         Get Started
       </SubmitButton>
