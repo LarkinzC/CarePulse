@@ -71,3 +71,30 @@ export const registerPatient = async ({ identificationDocument, ...patient}:
       console.log(error)
     }
   }
+
+  export const getPatient = async (userId: string) => {
+    try {
+      // Create new user -> https://appwrite.io/docs/references/1.5.x/server-nodejs/users#create
+      const patients = await databases.listDocuments(
+        DATABASE_ID!,
+        PATIENT_COLLECTION_ID!,
+        [
+          Query.equal('userId', userId)
+        ]
+      )
+      
+  
+  
+      return parseStringify(patients.documents[0]);
+    } catch (error: any) {
+      // Check existing user
+      if (error && error?.code === 409) {
+        const existingUser = await users.list([
+          Query.equal("email", [user.email]),
+        ]);
+  
+        return existingUser.users[0];
+      }
+      console.error("An error occurred while creating a new user:", error);
+    }
+  };
