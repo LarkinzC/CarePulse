@@ -93,7 +93,19 @@ type: 'create' | 'cancel'}
       label="Expected appointment date"
       showTimeSelect
       dateFormat="MM/DD/YYYY - h:mm aa"/>
+
+<div className="flex flex-col gap-6">
+        <CustomFormField 
+        fieldType={FormFieldType.TEXTAREA}
+        control={form.control}
+        name="reason"
+        label="Reason for appointment"
+        placeholder="Enter reason for appointment"
+        />
+</div>
       </>
+
+      
     )}
 
       <SubmitButton isLoading={isLoading}>
