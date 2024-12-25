@@ -112,8 +112,16 @@ type: 'create' | 'cancel'}
         />
 </div>
       </>
+    )}
 
-      
+    {type === 'cancel' && (
+      <CustomFormField 
+      fieldType={FormFieldType.TEXTAREA}
+      control={form.control}
+      name="cancellationReason"
+      label="Reason for cancellation"
+      placeholder="Enter reason for cancellation"
+      />
     )}
 
       <SubmitButton isLoading={isLoading}>
