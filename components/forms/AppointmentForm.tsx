@@ -102,6 +102,14 @@ type: 'create' | 'cancel'}
         label="Reason for appointment"
         placeholder="Enter reason for appointment"
         />
+
+        <CustomFormField 
+        fieldType={FormFieldType.TEXTAREA}
+        control={form.control}
+        name="notes"
+        label="Notes"
+        placeholder="Enter applicable notes"
+        />
 </div>
       </>
 
