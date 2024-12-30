@@ -32,9 +32,11 @@ type: 'create' | 'cancel' | 'schedule'}
   const form = useForm<z.infer<typeof UserFormValidation>>({
     resolver: zodResolver(UserFormValidation),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: ""
+      primaryPhysician: "",
+      schedule: new Date(),
+      reason: "",
+      note: "",
+      cancellationReason: ""
     },
   })
  
@@ -124,7 +126,7 @@ type: 'create' | 'cancel' | 'schedule'}
         <CustomFormField 
         fieldType={FormFieldType.TEXTAREA}
         control={form.control}
-        name="notes"
+        name="note"
         label="Notes"
         placeholder="Enter applicable notes"
         />
