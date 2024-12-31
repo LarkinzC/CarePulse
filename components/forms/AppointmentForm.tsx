@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
 import { useState } from "react"
-import { AppointmentFormValidation  } from "@/lib/validation"
+import {  getAppointmentSchema  } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
@@ -23,14 +23,16 @@ const AppointmentForm =({
 }:
 {userId: string;
 patientId: string;
-type: 'create' | 'cancel' | 'schedule'}
+type: 'create' | 'cancel' | 'schedule';}
 
 ) => {
   const router= useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
-  const form = useForm<z.infer<typeof PatientFormValidation>>({
-    resolver: zodResolver(PatientFormValidation),
+  const AppointmentFormValidation = getAppointmentSchema(type)
+
+  const form = useForm<z.infer<typeof AppointmentFormValidation>>({
+    resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
       primaryPhysician: "",
       schedule: new Date(),
@@ -41,7 +43,7 @@ type: 'create' | 'cancel' | 'schedule'}
   })
  
   // 2. Define a submit handler.
-  async function onSubmit( values: z.infer<typeof PatientFormValidation>) {
+  async function onSubmit( values: z.infer<typeof AppointmentFormValidation>) {
     setIsLoading(true)
 
     let status;
@@ -71,8 +73,8 @@ type: 'create' | 'cancel' | 'schedule'}
         }
       }
 
-      if(user) 
-        router.push(`/patients/${user.$id}/register`)
+     // const appointmentData = await CreateAppointment(appointmentData)
+
     } catch(error) {
       console.log(error)
     }
