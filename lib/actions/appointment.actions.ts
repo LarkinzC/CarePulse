@@ -1,20 +1,20 @@
-import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases, PATIENT_COLLECTION_ID,  } from "../appwrite.config"
+import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases, ENDPOINT, PATIENT_COLLECTION_ID,  } from "../appwrite.config"
 import { ID } from "node-appwrite"
+import { parseStringify } from "../utils"
 
-export const createAppointment = async () {
+export const createAppointment = async (appointment: CreateAppointmentParams) {
     try {
-        const newPatient = await databasesses.createDocument(
+        const newAppointment = await databasesses.createDocument(
             DATABASE_ID!,
             APPOINTMENT_COLLECTION_ID!,
-            ID.unique(), 
+            ID.unique(),
+            appointment,
             {
-              identificationDocumentId: file?.$id || null,
-              identificationDocumentUrl: `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
               ...patient
             }
     
           )
-          return parseStringify(newPatient)
+          return parseStringify(newAppointment)
     } catch (error) {
         console.log(error)
     }
