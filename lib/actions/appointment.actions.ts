@@ -2,17 +2,13 @@ import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases, ENDPOINT, PATIENT_CO
 import { ID } from "node-appwrite"
 import { parseStringify } from "../utils"
 
-export const createAppointment = async (appointment: CreateAppointmentParams) {
+export const createAppointment = async (appointment: CreateAppointmentParams) => {
     try {
-        const newAppointment = await databasesses.createDocument(
+        const newAppointment = await databases.createDocument(
             DATABASE_ID!,
             APPOINTMENT_COLLECTION_ID!,
             ID.unique(),
-            appointment,
-            {
-              ...patient
-            }
-    
+            appointment
           )
           return parseStringify(newAppointment)
     } catch (error) {

@@ -9,13 +9,14 @@ import { Input } from "@/components/ui/input"
 import CustomFormField from "../CustomFormField"
 import SubmitButton from "../SubmitButton"
 import { useState } from "react"
-import {  getAppointmentSchema  } from "@/lib/validation"
+import {  CreateAppointmentSchema, getAppointmentSchema  } from "@/lib/validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import { FormFieldType } from "./PatientForm"
 import { Doctors } from "@/constants"
 import { SelectItem } from "../ui/select"
 import Image from "next/image"
+import { createAppointment } from "@/lib/actions/appointment.actions"
 
  
 const AppointmentForm =({
@@ -71,9 +72,14 @@ type: 'create' | 'cancel' | 'schedule';}
           status: status as Status
 
         }
+        const appointment = await createAppointment(appointmentData)
+
+        if(appointment) {
+          form.reset()
+          router.push(`/patients/${userId}/new-appointment/success?appointmentId=${appointment.id}`)
+        }
       }
 
-     // const appointmentData = await CreateAppointment(appointmentData)
 
     } catch(error) {
       console.log(error)
