@@ -23,7 +23,7 @@ export default async function NewAppointment({ params: { userId }}: SearchParamP
           <AppointmentForm 
           type='create'
           userId={userId}
-          patient={patient.$id}
+          patientId={patient?.$id}
           />
 
           
