@@ -57,8 +57,11 @@ type: 'create' | 'cancel' | 'schedule';}
           break;
       }
 
+      console.log('BEFORE THE TRY')
+
     try {
       if(type === 'create' && patientId) {
+        console.log('Functioning ternary')
         const appointmentData = {
           userId,
           patient: patientId,
@@ -70,6 +73,8 @@ type: 'create' | 'cancel' | 'schedule';}
 
         }
         const appointment = await createAppointment(appointmentData)
+
+        console.log(appointment)
 
         if(appointment) {
           form.reset()
