@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getAppointment } from '@/lib/actions/appointment.actions'
 import { Doctors } from '@/constants'
+import { formatDateTime } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 
 // http://localhost:3000/patients/670c804300037eb28a6d/new-appointment/success?appointmentId=678d949000289546c90c
@@ -46,8 +48,26 @@ const Success = async ({ params: { userId }, searchParams }: SearchParamProps) =
                 height={100}
                 className='size-6'
                 />
+                <p className='whitespace-nowrap'>
+                  {doctor?.name}
+                </p>
+              </div>
+              <div className='flex gap-2 '>
+              <Image 
+                src='/assets/icons/calendar.svg'
+                height={24}
+                width={24}
+                alt='calendar'
+              />
+              <p>{formatDateTime(appointment.schedule).dateTime}</p>
               </div>
             </section>
+            <Button variant='outline' className='shad-primary-btn' asChild>
+              <Link href={`/patients/${userId}/new-appointment`}>
+              New Appointment
+              </Link>
+            </Button>
+            <p className='copyright'>© 2025 CarePulse</p>
         </div>
     </div>
   )
