@@ -15,6 +15,9 @@ const Success = () => {
             className='h-10 w-fit'
             />
             </Link>
+            <h2 className='header mb-6 max-w-[600px] text-center'>
+              Your <span className='text-green-500'>appointment request</span> has been succesfully submitted!
+            </h2>
         </div>
     </div>
   )
