@@ -1,9 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { getAppointment } from '@/lib/actions/appointment.actions'
+import { Doctors } from '@/constants'
 
-const Success = ({}) => {
 
+// http://localhost:3000/patients/670c804300037eb28a6d/new-appointment/success?appointmentId=678d949000289546c90c
+const Success = async ({ params: { userId }, searchParams }: SearchParamProps) => {
+  const appointmentId = (searchParams?.appointmentId as string) || ''
+  const appointment = await getAppointment(appointmentId)
+
+  const doctor = Doctors.find((doc) => doc.name === appointment.primaryPhysician)
 
 
 
@@ -34,7 +40,11 @@ const Success = ({}) => {
               <p>Requested appointment details:</p>
               <div className='flex items-center gap-3'>
                 <Image 
-                
+                src={doctor?.image!}
+                alt='doctor'
+                width={100}
+                height={100}
+                className='size-6'
                 />
               </div>
             </section>
