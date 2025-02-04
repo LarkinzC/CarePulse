@@ -22,6 +22,7 @@ import {
 import Image from "next/image"
 import { useRouter } from "next/navigation"
   import { useState } from "react"
+import { encryptKey } from "@/lib/utils"
 
 const PasskeyModal = () => {
     const router = useRouter()
@@ -32,7 +33,9 @@ const PasskeyModal = () => {
     const validatePasskey = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault()
       if(passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+        const encryptedKey = encryptKey(passkey)
 
+        localStorage.setItem('access', encryptedKey)
       } else {
         setError('Invalid passkey. Please try again.')
       }
