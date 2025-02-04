@@ -27,6 +27,7 @@ const PasskeyModal = () => {
     const router = useRouter()
     const [open, setOpen] = useState(true)
     const [passkey, setPasskey] = useState('')
+    const [error, setError] = useState('')
     
     const closeModal = () => {
         setOpen(false)
@@ -63,6 +64,7 @@ const PasskeyModal = () => {
             <InputOTPSlot className="shad-otp-slot" index={5} />
         </InputOTPGroup>
         </InputOTP>
+        {error && <p className="shad-error text-14-regular mt-4 flex justify-center">{error}</p>}
         </div>
     <AlertDialogFooter>
       <AlertDialogCancel>Cancel</AlertDialogCancel>
