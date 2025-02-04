@@ -67,8 +67,9 @@ const PasskeyModal = () => {
         {error && <p className="shad-error text-14-regular mt-4 flex justify-center">{error}</p>}
         </div>
     <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction>Continue</AlertDialogAction>
+      <AlertDialogAction onClick={(e) => validatePasskey(e)} className="shad-primary-btn w-full">
+        Enter Admin Passkey
+      </AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>
