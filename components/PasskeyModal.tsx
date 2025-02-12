@@ -36,7 +36,9 @@ const PasskeyModal = () => {
     useEffect(() => {
       if(path) {
       if(passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+        console.log('closing otp')
         setOpen(false)
+        console.log('pushing to admin')
         router.push('/admin')
       } else {
         setOpen(true)
@@ -50,7 +52,7 @@ const PasskeyModal = () => {
       if(passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
         const encryptedKey = encryptKey(passkey)
 
-        localStorage.setItem('access', encryptedKey)
+        localStorage.setItem('accessKey', encryptedKey)
 
         setOpen(false)
       } else {
