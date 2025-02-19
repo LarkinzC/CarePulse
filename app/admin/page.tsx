@@ -24,6 +24,7 @@ const Admin = () => {
             <h1 className='header'>
               Welcome 👋
             </h1>
+              <p className='text-dark-700'>Start the day with managing new appointments</p>
           </section>
         </main>
     </div>
