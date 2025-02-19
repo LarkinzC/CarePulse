@@ -18,6 +18,14 @@ const Admin = () => {
 
             <p className='text-16-semibold'>Admin Dashboard</p>
         </header>
+
+        <main className='admin-main'>
+          <section className='w-full space-y-4'>
+            <h1 className='header'>
+              Welcome 👋
+            </h1>
+          </section>
+        </main>
     </div>
   )
 }
