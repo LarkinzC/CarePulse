@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import StatCard from '@/components/StatCard'
 import { getRecentAppointmentsList } from '@/lib/actions/appointment.actions'
+import DataTable from '@/components/DataTable'
 
 const Admin = async () => {
   const appointments = await getRecentAppointmentsList()
@@ -40,17 +41,18 @@ const Admin = async () => {
             />
             <StatCard 
             type='pending'
-            count={10}
+            count={appointments.pendingCount}
             label='Pending appointments'
             icon='/assets/icons/pending.svg'
             />
             <StatCard 
             type='cancelled'
-            count={2}
+            count={appointments.cancelledCount}
             label='Cancelled appointments'
             icon='/assets/icons/cancelled.svg'
             />
           </section>
+          <DataTable columns={}  data={appointments.documents}/>
         </main>
     </div>
   )
