@@ -4,7 +4,7 @@ import Image from 'next/image'
 import StatCard from '@/components/StatCard'
 import { getRecentAppointmentsList } from '@/lib/actions/appointment.actions'
 import DataTable from '@/components/DataTable'
-import columns from '@/components/table/columns'
+import {columns} from '@/components/table/columns'
 
 const Admin = async () => {
   const appointments = await getRecentAppointmentsList()
