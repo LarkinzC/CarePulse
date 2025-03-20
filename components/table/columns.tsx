@@ -24,6 +24,10 @@ export type Payment = {
 
 export const columns: ColumnDef<Payment>[] = [
   {
+    header: 'ID',
+    cell:({ row }) => <p className="text-14-medium">{row.index + 1}</p>
+  },
+  {
     accessorKey: "status",
     header: "Status",
   },
