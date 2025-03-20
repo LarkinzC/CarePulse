@@ -28,6 +28,12 @@ export const columns: ColumnDef<Payment>[] = [
     cell:({ row }) => <p className="text-14-medium">{row.index + 1}</p>
   },
   {
+    accessorKey: 'patient',
+    header: 'Patient',
+    cell: ({ row }) =>  <p className="text-14-medium">{row.original.patient.name}</p>
+    
+  },
+  {
     accessorKey: "status",
     header: "Status",
   },
