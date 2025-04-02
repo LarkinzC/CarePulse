@@ -83,7 +83,7 @@ setOpen: (open: boolean) => void
           router.push(`/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`)
         }
       } else {
-        const appointmentToCancel = {
+        const appointmentToUpdate= {
           userId,
           appointmentId: appointment?.$id,
           appointment: {
@@ -91,8 +91,10 @@ setOpen: (open: boolean) => void
             schedule: new Date(values?.schedule),
             status: status as Status,
             cancellationReason: values?.cancellationReason
-          }
+          },
+          type
         }
+        const updatedAppointment= await updateAppointment(appointmentToUpdate)
       }
 
 

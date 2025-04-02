@@ -4,6 +4,7 @@ import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases } from "../appwrite.c
 import { ID, Query } from "node-appwrite"
 import { parseStringify } from "../utils"
 import { Appointment } from "@/types/appwrite.types"
+import { revalidatePath } from "next/cache"
 
 export const createAppointment = async (appointment: CreateAppointmentParams) => {
     try {
@@ -74,3 +75,25 @@ export const getRecentAppointmentsList = async () => {
         console.log(error)
     }
 }
+
+export const updateAppointment = async ({ appointmentId, userId, appointment, type}: updateAppointmentParams) => {
+    try {
+        const updatedAppointment = await databases.updateDocument(
+            DATABASE_ID!,
+            APPOINTMENT_COLLECTION_ID!,
+            appointmentId,
+            appointment
+        )
+
+        if(!updatedAppointment) {
+            throw new Error('Appointment not found!')
+        }
+
+        //sms notification
+
+        revalidatePath('/admin')
+        return parseStringify(updatedAppointment)
+    } catch (err) {
+        console.log('error has occured')
+    }
+} 
