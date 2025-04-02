@@ -22,7 +22,7 @@ const AppointmentForm =({
 }:
 {userId: string;
 patientId: string;
-type: 'create' | 'cancel' | 'schedule';,
+type: 'create' | 'cancel' | 'schedule',
 appointment?: Appointment,
 setOpen: (open: boolean) => void
 }
@@ -61,7 +61,6 @@ setOpen: (open: boolean) => void
           break;
       }
 
-      console.log('BEFORE THE TRY')
 
     try {
       if(type === 'create' && patientId) {
@@ -78,11 +77,21 @@ setOpen: (open: boolean) => void
         }
         const appointment = await createAppointment(appointmentData)
 
-        console.log(appointment)
 
         if(appointment) {
           form.reset()
           router.push(`/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`)
+        }
+      } else {
+        const appointmentToCancel = {
+          userId,
+          appointmentId: appointment?.$id,
+          appointment: {
+            primaryPhysician: values?.primaryPhysician,
+            schedule: new Date(values?.schedule),
+            status: status as Status,
+            cancellationReason: values?.cancellationReason
+          }
         }
       }
 
