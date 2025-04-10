@@ -95,6 +95,11 @@ setOpen: (open: boolean) => void
           type
         }
         const updatedAppointment= await updateAppointment(appointmentToUpdate)
+
+        if(updatedAppointment) {
+          setOpen && setOpen(false)
+          form.reset()
+        }
       }
 
 
