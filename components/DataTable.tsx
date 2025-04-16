@@ -17,6 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "./ui/button"
+import Image from "next/image"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -39,7 +40,7 @@ export function DataTable<TData, TValue>({
       <Table className="shad-table">
         <TableHeader className="bg-dark-200">
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow key={headerGroup.id} className="shad-table-row-header">
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id}>
@@ -61,6 +62,7 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="shad-table-row"
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
@@ -78,23 +80,35 @@ export function DataTable<TData, TValue>({
           )}
         </TableBody>
       </Table>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="table-actions">
         <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className="shad-gray-btn"
         >
-          Previous
+          <Image 
+          src="/assets/icons/arrow.svg"
+          height={24}
+          width={24}
+          alt="arrow"/>
         </Button>
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table.nextPage()}
+          onClick={() => table.getCanNextPage()}
           disabled={!table.getCanNextPage()}
+          className="shad-gray-btn"
         >
-          Next
+          <Image 
+          src="/assets/icons/arrow.svg"
+          height={24}
+          width={24}
+          alt="arrow"
+          className="rotate-180"/>
         </Button>
+        
       </div>
     </div>
   )
