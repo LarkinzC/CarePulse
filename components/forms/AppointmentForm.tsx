@@ -36,11 +36,11 @@ setOpen: (open: boolean) => void
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
-      primaryPhysician: "",
-      schedule: new Date(),
-      reason: "",
-      note: "",
-      cancellationReason: ""
+      primaryPhysician: appointment ? appointment.primaryPhysician : '',
+      schedule: appointment ? new Date(appointment.schedule) : new Date(),
+      reason: appointment ? appointment.reason : '',
+      note: appointment ? appointment.note ? '',
+      cancellationReason: appointment?.cancellationReason || ''
     },
   })
  
