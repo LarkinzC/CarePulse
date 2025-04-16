@@ -39,7 +39,7 @@ setOpen: (open: boolean) => void
       primaryPhysician: appointment ? appointment.primaryPhysician : '',
       schedule: appointment ? new Date(appointment.schedule) : new Date(),
       reason: appointment ? appointment.reason : '',
-      note: appointment ? appointment.note ? '',
+      note: appointment ? appointment.note : '',
       cancellationReason: appointment?.cancellationReason || ''
     },
   })
