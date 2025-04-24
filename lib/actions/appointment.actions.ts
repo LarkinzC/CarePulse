@@ -99,7 +99,7 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
     }
 } 
 
-export const sendSMSNotification = async (userID: string, content: string) => {
+export const sendSMSNotification = async (userId: string, content: string) => {
     try{
         const message = await messaging.createSms(
             ID.unique(),
@@ -107,6 +107,7 @@ export const sendSMSNotification = async (userID: string, content: string) => {
             [],
             [userId]
         )
+        return parseStringify(message)
     } catch(err) {
         console.log(err)
     }
