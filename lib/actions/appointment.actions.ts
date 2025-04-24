@@ -5,6 +5,7 @@ import { ID, Query } from "node-appwrite"
 import { parseStringify } from "../utils"
 import { Appointment } from "@/types/appwrite.types"
 import { revalidatePath } from "next/cache"
+import { UserRoundIcon } from "lucide-react"
 
 export const createAppointment = async (appointment: CreateAppointmentParams) => {
     try {
@@ -97,3 +98,7 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
         console.log(err)
     }
 } 
+
+export const sendSMSNotification = async (userID: string, content: string) => {
+    
+}
