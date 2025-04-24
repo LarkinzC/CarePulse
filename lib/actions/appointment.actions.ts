@@ -1,6 +1,6 @@
 'use server'
 
-import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases } from "../appwrite.config"
+import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases, messaging } from "../appwrite.config"
 import { ID, Query } from "node-appwrite"
 import { parseStringify } from "../utils"
 import { Appointment } from "@/types/appwrite.types"
@@ -101,7 +101,7 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
 
 export const sendSMSNotification = async (userID: string, content: string) => {
     try{
-
+        const message = await messaging.createSms
     } catch(err) {
         console.log(err)
     }
