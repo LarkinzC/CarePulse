@@ -92,7 +92,9 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
 
         const smsMessage = `
         Hi, Carepulse here.
-        ${type === 'schedule' ? 'Your appointment has been scheduled' : 'Your appointment has been cancelled'}
+        ${type === 'schedule' 
+            ? `Your appointment has been scheduled ${formateDateTime(appointment.schedule)}` 
+            : 'Your appointment has been cancelled'}
         `
 
         revalidatePath('/admin')
