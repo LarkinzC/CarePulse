@@ -90,7 +90,7 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
             throw new Error('Appointment not found!')
         }
 
-        const smsMessage = ``
+        const smsMessage = `Hi, Carepulse here. Your appointent has been ${type}`
 
         revalidatePath('/admin')
         return parseStringify(updatedAppointment)
