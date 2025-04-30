@@ -2,7 +2,7 @@
 
 import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases, messaging } from "../appwrite.config"
 import { ID, Query } from "node-appwrite"
-import { parseStringify } from "../utils"
+import { formatDateTime, parseStringify } from "../utils"
 import { Appointment } from "@/types/appwrite.types"
 import { revalidatePath } from "next/cache"
 import { UserRoundIcon } from "lucide-react"
@@ -93,8 +93,8 @@ export const updateAppointment = async ({ appointmentId, userId, appointment, ty
         const smsMessage = `
         Hi, Carepulse here.
         ${type === 'schedule' 
-            ? `Your appointment has been scheduled ${formateDateTime(appointment.schedule)}` 
-            : 'Your appointment has been cancelled'}
+            ? `Your appointment has been scheduled ${formatDateTime(appointment.schedule!)}` 
+            : `We regret to inform you that your appointment has been cancelled. REASON: ${appointment.cancellationReason}`}
         `
 
         revalidatePath('/admin')
